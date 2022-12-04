@@ -1,24 +1,52 @@
-# Pode correr o programa sem argumentos:
-#   python3 shop
-# ou passando outros ficheiros de produtos como argumento:
-#   python3 shop produtos1.txt ...
-
 def loadDataBase(fname, produtos):
     """Lê dados do ficheiro fname e atualiza/acrescenta a informação num
     dicionário de produtos com o formato {código: (nome, secção, preço, iva), ...}.
     """
-
+    with open(fname,'r') as file:
+        for line in file.readlines()[1:]:
+            codigo, nome, seccao, preco, iva = line.split(';')
+            produtos[codigo] = (nome, seccao, float(preco), (float(iva[:-2])/100))
+        return produtos
 
 def registaCompra(produtos):
     """Lê códigos de produtos (ou códigos e quantidades),
     mostra nome, quantidade e preço final de cada um,
     e devolve dicionário com {codigo: quantidade, ...}
     """
+    compra = dict()
+    code = input("Code? ")
+    while code != "":
+        if code in produtos:
+            if code not in compra:
+                quantidade = 1
+            else:
+                quantidade += 1
+            preço_final = (quantidade * produtos[code][2]) + (quantidade * produtos[code][2] * produtos[code][3])
+            print(f'{produtos[code][0]} 1 {produtos[code][2] + produtos[code][2] * produtos[code][3]:.2f}')
+            compra[code] = (quantidade, preço_final)
+            code = input("Code? ")
+        else:
+            code = input("Code? ")
+    return compra
 
 
 def fatura(produtos, compra):
     """Imprime a fatura de uma dada compra."""
-
+    Total_Bruto = 0
+    Iva = 0
+    seccoes = list()
+    for i in compra:
+        Total_Bruto += float(compra[i][0]*produtos[i][2])
+        Iva += float(compra[i][0]*produtos[i][2]) * produtos[i][3]
+        Total_Liquido = Total_Bruto + Iva
+        if produtos[i][1] not in seccoes:
+            seccoes.append(produtos[i][1])
+            print(produtos[i][1])
+            print(f'{compra[i][0]:>5} {produtos[i][0]} {int((produtos[i][3]*100)):>25}% {compra[i][1]:>10.2f}')
+        elif produtos[i][1] in seccoes:
+            print(f'{compra[i][0]:>5} {produtos[i][0]} {int((produtos[i][3]*100)):>25}% {compra[i][1]:>10.2f}')
+    if i == list(compra)[-1]:
+        print(f"{'Total Bruto:':>30} {Total_Bruto:>10.2f}\n{'Total IVA:':>30} {Iva:>10.2f}\n{'Total Liquido:':>30} {Total_Liquido:>10.2f}")
 
 def main(args):
     # produtos guarda a informação da base de dados numa forma conveniente.
@@ -33,6 +61,7 @@ def main(args):
     # Use este código para mostrar o menu e ler a opção repetidamente
     MENU = "(C)ompra (F)atura (S)air ? "
     repetir = True
+    compras = []
     while repetir:
         # Utilizador introduz a opção com uma letra minúscula ou maiúscula
         op = input(MENU).upper()
@@ -40,8 +69,16 @@ def main(args):
         if op == "C":
             # Esta opção regista os produtos de uma compra
             compra = registaCompra(produtos)
-            # Aqui pode acrescentar a compra a uma estrutura de dados adequada...
-        # Acrescente outras opções aqui...
+            compras.append(compra)
+
+        elif op == "F":
+            # Esta opção imprime a fatura de uma compra
+            numero_compra = int(input("Numero compra? "))
+            fatura(produtos, compras[(numero_compra)-1])
+        elif op == "S":
+            # Esta opção termina o programa
+            repetir = False
+
 
     print("Obrigado!")
 
