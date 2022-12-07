@@ -16,14 +16,24 @@ def registaCompra(produtos):
     compra = dict()
     code = input("Code? ")
     while code != "":
-        if code in produtos:
-            if code not in compra:
-                quantidade = 1
-            else:
+        if code.split()[0] in produtos:
+            if code.split()[0] not in compra:
+                quantidade = 0
+                if code.split()[-1] in produtos:
+                    quantidade = 1
+                else:
+                    quantidade = int(code.split()[-1])
+            elif code.split()[0] in compra and code.split()[-1] in produtos:
                 quantidade += 1
-            preço_final = (quantidade * produtos[code][2]) + (quantidade * produtos[code][2] * produtos[code][3])
-            print(f'{produtos[code][0]} 1 {produtos[code][2] + produtos[code][2] * produtos[code][3]:.2f}')
-            compra[code] = (quantidade, preço_final)
+            else:
+                quantidade = compra[code.split()[0]][0]
+                quantidade += int(code.split()[-1])
+            preço_final = (quantidade * produtos[code.split()[0]][2]) + (quantidade * produtos[code.split()[0]][2] * produtos[code.split()[0]][3])
+            if code.split()[-1] in produtos:
+                print(f'{produtos[code.split()[0]][0]} 1 {(produtos[code.split()[0]][2] + produtos[code.split()[0]][2] * produtos[code.split()[0]][3]):.2f}')
+            else:
+                print(f'{produtos[code.split()[0]][0]} {int(code.split()[-1])} {int(code.split()[-1]) * (produtos[code.split()[0]][2] + produtos[code.split()[0]][2] * produtos[code.split()[0]][3]):.2f}')
+            compra[code.split()[0]] = (quantidade, preço_final)
             code = input("Code? ")
         else:
             code = input("Code? ")
@@ -35,6 +45,7 @@ def fatura(produtos, compra):
     Total_Bruto = 0
     Iva = 0
     seccoes = list()
+    oi = 2
     for i in compra:
         Total_Bruto += float(compra[i][0]*produtos[i][2])
         Iva += float(compra[i][0]*produtos[i][2]) * produtos[i][3]
@@ -42,9 +53,15 @@ def fatura(produtos, compra):
         if produtos[i][1] not in seccoes:
             seccoes.append(produtos[i][1])
             print(produtos[i][1])
-            print(f'{compra[i][0]:>5} {produtos[i][0]} {int((produtos[i][3]*100)):>25}% {compra[i][1]:>10.2f}')
+            if len(str(int((produtos[i][3]*100)))) == 1:
+                print(f'{compra[i][0]:>5} {produtos[i][0]} ( {int((produtos[i][3]*100)):>}%) {compra[i][1]:>.2f}')
+            else:
+                print(f'{compra[i][0]:>5} {produtos[i][0]} ({int((produtos[i][3]*100)):>}%) {compra[i][1]:>.2f}')
         elif produtos[i][1] in seccoes:
-            print(f'{compra[i][0]:>5} {produtos[i][0]} {int((produtos[i][3]*100)):>25}% {compra[i][1]:>10.2f}')
+            if len(str(int((produtos[i][3]*100)))) == 1:
+                print(f'{compra[i][0]:>5} {produtos[i][0]} ( {int((produtos[i][3]*100)):>}%) {compra[i][1]:.2f}')
+            else:
+                print(f'{compra[i][0]:>5} {produtos[i][0]} ({int((produtos[i][3]*100)):>}%) {compra[i][1]:.2f}')
     if i == list(compra)[-1]:
         print(f"{'Total Bruto:':>30} {Total_Bruto:>10.2f}\n{'Total IVA:':>30} {Iva:>10.2f}\n{'Total Liquido:':>30} {Total_Liquido:>10.2f}")
 
