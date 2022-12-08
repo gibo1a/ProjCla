@@ -1,0 +1,221 @@
+\documentclass{report}
+\usepackage[T1]{fontenc} % Fontes T1
+\usepackage[utf8]{inputenc} % Input UTF8
+\usepackage[backend=biber, style=ieee]{biblatex} % para usar bibliografia
+\usepackage{csquotes}
+\usepackage[portuguese]{babel} %Usar língua portuguesa
+\usepackage{blindtext} % Gerar texto automaticamente
+\usepackage[printonlyused]{acronym}
+\usepackage{hyperref} % para autoref
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+
+\bibliography{bibliografia}
+
+
+\begin{document}
+%%
+% Definições
+%
+\def\titulo{Computação Quântica}
+\def\data{19/11/22}
+\def\autores{Gabriel Boia, João Pinto}
+\def\autorescontactos{(113167) gabriel.boia@ua.pt, (113093) joaop1@ua.pt}
+\def\versao{VERSAO}
+\def\departamento{Dept. de Eletrónica, Telecomunicações e Informática}
+\def\empresa{Universidade de Aveiro}
+\def\logotipo{ua.pdf}
+%
+%%%%%% CAPA %%%%%%
+%
+\begin{titlepage}
+
+\begin{center}
+%
+\vspace*{50mm}
+%
+{\Huge \titulo}\\ 
+%
+\vspace{10mm}
+%
+{\Large \empresa}\\
+%
+\vspace{10mm}
+%
+{\LARGE \autores}\\ 
+%
+\vspace{30mm}
+%
+\begin{figure}[h]
+\center
+\includegraphics{\logotipo}
+\end{figure}
+%
+\vspace{30mm}
+\end{center}
+%
+\begin{flushright}
+\versao
+\end{flushright}
+\end{titlepage}
+
+%%  Página de Título %%
+\title{%
+{\Huge\textbf{\titulo}}\\
+{\Large \departamento\\ \empresa}
+}
+%
+\author{%
+    \autores \\
+    \autorescontactos
+}
+%
+\date{\today}
+%
+\maketitle
+
+\pagenumbering{roman}
+
+%%%%%% RESUMO %%%%%%
+\begin{abstract}
+Resumo de 200-300 palavras.
+\end{abstract}
+
+%%%%%% Agradecimentos %%%%%%
+% Segundo glisc deveria aparecer após conclusão...
+\renewcommand{\abstractname}{Agradecimentos}
+\begin{abstract}
+Eventuais agradecimentos.
+Comentar bloco caso não existam agradecimentos a fazer.
+\end{abstract}
+
+
+\tableofcontents
+% \listoftables     % descomentar se necessário
+% \listoffigures    % descomentar se necessário
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Introdução}
+\label{chap.introducao}
+Os descobrimentos na área da física quântica, possibilitaram e vão possibilitar diversos avanços tecnológicos e a busca por ainda mais conhecimento levou os seres humanos a desenvolverem computadores com ainda mais capacidades na esperança de aumentar as capacidades de simulação e o conhecimento sobre o universo que detemos.
+ \paragraph{}A tecnologia é recente tendo apenas sido proposta nos anos 80 e por isso ainda há muita possibilidade de crescimento nesta área. Já foi provado que estes computadores quânticos conseguem realizar qualquer tarefa realizada pelos computadores clássicos. Algoritmos que levariam anos a ser processados por computadores clássicos podem agora ser processados por computadores quânticos, em um intervalo de tempo bastante menor, o que possibilita que algoritmos que antes não apresentavam solução possam agora ser resolvidos. Ao contrário de computadores clássicos que funcionam á base de bits, que podem tomar o valor de 0 ou 1, computadores quânticos usam quantum bit, mais conhecidos como qubits, que usando os princípios da física quântica podem tomar os valores 0 e 1 em simultâneo.
+\paragraph{}Este documento está dividido em quatro capítulos.
+Depois desta introdução,
+no \autoref{chap.principios} são apresentados principios de física que servem de base á computação quântica,
+no \autoref{chap.aplicacoes} são abordadas várias aplicações da computação quântica,
+no \autoref{chap.diferencas} são apresentadas algumas diferenças entre computadores quânticos e computadores clássicos,
+no \autoref{chap.tipos} são abordados três típos de computadores quânticos.
+
+
+\chapter{Principios de Física}
+\label{chap.principios}
+Principio da superposição, interferencia, mecânica quântica e entanglement quântico são principios de física apresentados neste capítulo. Cada princício terá
+um subcapítulo próprio.
+\paragraph{}Os computadores quânticos operam de acordo com estes principios da física quântica.
+\section{Princípio da superposição}
+O que permite a um qubit assumir os valores de 0 e de 1 ao mesmo tempo é o principio da superposição que por definição diz que para qualquer sistema linear, a soma das respostas que seriam causadas por cada estímulo individual é igual á resposta da soma dos estímulos causados.De forma que se um input A produzisse uma resposta X e um input B produzisse uma resposta Y então o input (A + B) produz a resposta (X + Y).
+Uma função F(x) que satisfaz o princípio da superposição é chamada uma função linear.A superposição pode ser descrita por dois princípios mais simples: adição
+\begin{equation}
+    F(x_1 + x_2) = F(x_1) + F(x_2)
+\end{equation}
+e homogeneidade
+\begin{equation}
+    F(\alpha x) = \alpha F(x)
+\end{equation}
+para um \(\alpha\) escalar.
+Uma das maneiras de calcular computacionalmente o comportamento de uma função de uma onda é escrevê-la como uma superposição conhecida como superposição quântica.Como a equação de Schrödinger é uma equação linear pode ser utilizada para calcular este comportamento.
+\begin{equation}
+    |\psi_i\rangle = \sum_{j}C_j|\phi_j\rangle
+\end{equation}
+onde \(C_j \epsilon C\) e \(|\phi_j\rangle\) pertence a uma base ortonormada.Como tal um objeto pode estar em dois estados ao mesmo tempo enquanto permanece um único objeto o que possibilita qubits a estarem em dois estados:
+\newline\begin{equation}
+    |0\rangle:=\begin{pmatrix}1\\0\end{pmatrix}
+\end{equation}
+\newline Estado zero
+\newline\begin{equation}
+    |1\rangle := \begin{pmatrix}0\\1\end{pmatrix}
+\end{equation}
+\newline Estado um
+\newline\newline Um qubit pode então ser encontrado numa qualquer superposição quântica dos dois estados clássicos 
+\(|0\rangle e |1\rangle:\)
+\newline
+\begin{equation}
+        |\psi\rangle := \alpha |0\rangle + \beta |1\rangle =\begin{pmatrix}
+    \alpha \\ \beta 
+\end{pmatrix};|\alpha|^2+|\beta|^2 = 1
+\end{equation}
+\section{Mecânica quântica}
+A mecânica quântica é uma teoria fundamental da física que fornece uma descrição das propriedades físicas da natureza na escala de átomos e partículas subatômicas.
+\newline
+A mecânica quântica difere da física clássica porque a energia , o momento , o momento angular e outras quantidades de um sistema limitado são restritas a valores discretos ( quantização ); os objetos têm características de partículas e ondas ( dualidade onda-partícula ); e há limites para a precisão com que o valor de uma quantidade física pode ser previsto antes de sua medição, dado um conjunto completo de condições iniciais (o princípio da incerteza ).
+A mecânica quântica surgiu gradualmente de teorias para explicar observações que não podiam ser conciliadas com a física clássica, como a solução de Max Planck em 1900 para o problema da radiação do corpo negro e a correspondência entre energia e frequência no artigo de Albert Einstein de 1905 que explicou o efeito fotoelétrico . Essas primeiras tentativas de entender os fenômenos microscópicos, agora conhecidos como a " velha teoria quântica ", levaram ao pleno desenvolvimento da mecânica quântica em meados da década de 1920 por Niels Bohr , Erwin Schrödinger , Werner Heisenberg , Max Born ,Paulo Dirac e outros. A teoria moderna é formulada em vários formalismos matemáticos especialmente desenvolvidos . Em um deles, uma entidade matemática chamada função de onda fornece informações, na forma de amplitudes de probabilidade ,sobre quais medições da energia, momento e outras propriedades físicas de uma partícula podem resultar.
+\subsection{Quantização}
+Na física , a quantização (em inglês britânico quantização ) é o procedimento sistemático de transição de uma compreensão clássica dos fenômenos físicos para uma compreensão mais recente conhecida como mecânica quântica . É um procedimento para construir a mecânica quântica a partir da mecânica clássica .
+\subsection{Dualidade onda-partícula}
+A dualidade onda-partícula é o conceito na mecânica quântica de que cada partícula ou entidade quântica pode ser descrita como uma partícula ou uma onda.Através do trabalho de Max Planck , Albert Einstein , Louis de Broglie , Arthur Compton , Niels Bohr , Erwin Schrödinger e muitos outros, a teoria científica atual sustenta que todas as partículas exibem uma natureza ondulatória e vice-versa.Este fenômeno foi verificado não apenas para partículas elementares, mas também para partículas compostas como átomos e até moléculas. 
+\subsection{Princípio da incerteza}
+Na mecânica quântica,o princípio da incerteza (também conhecido como princípio da incerteza de Heisenberg ) é qualquer uma de uma variedade de desigualdades matemáticas afirmando um limite fundamental para a precisão com que os valores de certos pares de quantidades físicas de uma partícula,como a posição,x,e momento,p, podem ser previstos a partir das condições iniciais.Introduzido pela primeira vez em 1927 pelo físico alemão Werner Heisenberg,o princípio da incerteza afirma que quanto mais precisamente a posição de alguma partícula é determinada, menos precisamente seu momento pode ser previsto a partir das condições iniciais e vice-versa. No artigo publicado em 1927,Heisenberg originalmente concluiu que o princípio da incerteza era\(\Delta p \Delta q\)usando a constante de Planck completa.A desigualdade formal relacionando o desvio padrão da posição \(\sigma_x\) e o desvio padrão do momento \(\sigma_p\) foi derivada por Earle Hesse Kennard mais tarde naquele ano e por Hermann Weyl em 1928:
+\begin{equation}
+    \sigma_x \sigma_p \geq \frac{\hbar}{2}
+\end{equation}
+\section{Entanglement quântico}
+Entanglement quântico é o fenômeno que ocorre quando um grupo de partículas é gerado, interage ou compartilha proximidade espacial de tal forma que o estado quântico de cada partícula do grupo não pode ser descrito independentemente do estado das demais,inclusive quando as partículas estão separados por uma grande distância.
+\newline
+Um dos princípios da computação quântica diz que dois sistemas que estão muito distantes para influenciar um ao outro podem,no entanto,se comportar de maneiras que,embora individualmente aleatórias,são de alguma forma fortemente correlacionadas .
+A ideia central por trás do segundo princípio é o entanglement quântico. Ao ler o princípio, alguém pode estar inclinado a pensar que o entanglement é simplesmente uma forte correlação entre duas entidades,mas o entanglement vai muito além da mera correlação perfeita (clássica). Se duas pessoas lerem o mesmo jornal, terão aprendido a mesma informação.Se uma terceira pessoa vier e ler o mesmo jornal, ela também terá aprendido essa informação.Todas as três pessoas neste caso estão perfeitamente correlacionadas e permanecerão correlacionadas mesmo se estiverem separadas umas das outras.
+O entanglement quântico é um pouco mais subtil.No mundo quântico,duas pessoas poderíamos ler o mesmo papel quântico e,no entanto, não saberiam que informação está realmente contida no papel até que se reúnam e compartilhem as informações.No entanto, quando estam juntos, descobrem que se pode extrair mais informações do papel do que se pensava ser possível inicialmente. Assim, o entanglement quântico vai muito além da correlação perfeita.
+\newline
+Um sistema emaranhado é definido como aquele cujo estado quântico não pode ser fatorado como um produto de estados de seus constituintes locais; isto é, não são partículas individuais, mas um todo inseparável. No emaranhamento, um constituinte não pode ser totalmente descrito sem considerar o(s) outro(s). O estado de um sistema composto é sempre expresso como uma soma, ou superposição , de produtos de estados de constituintes locais; ele é emaranhado se essa soma não puder ser escrita como um único termo de produto.
+\newline
+Os sistemas quânticos podem se emaranhar por meio de vários tipos de interações. Para algumas maneiras pelas quais o emaranhamento pode ser obtido para fins experimentais, consulte a seção abaixo sobre métodos . O emaranhamento é quebrado quando as partículas emaranhadas decoerem através da interação com o ambiente; por exemplo, quando uma medição é feita. [33]
+\newline
+Como um exemplo de emaranhamento: uma partícula subatômica decai em um par emaranhado de outras partículas. Os eventos de decaimento obedecem a várias leis de conservação e, como resultado, os resultados de medição de uma partícula filha devem ser altamente correlacionados com os resultados de medição da outra partícula filha (de modo que os momentos totais, momentos angulares, energia e assim por diante permaneçam aproximadamente o mesmo antes e depois deste processo). Por exemplo, uma partícula de spin zero pode decair em um par de partículas de spin 1/2. Uma vez que o spin total antes e depois desse decaimento deve ser zero (conservação do momento angular), sempre que a primeira partícula é medida como spin upem algum eixo, o outro, quando medido no mesmo eixo, sempre encontra-se com rotação para baixo . (Isso é chamado de caso anticorrelacionado de spin; e se as probabilidades anteriores para medir cada spin forem iguais, diz-se que o par está no estado singleto .)
+\newline
+O resultado acima pode ou não ser percebido como surpreendente.Um sistema clássico exibiria a mesma propriedade, e uma teoria de variável ocultacertamente seria necessário fazê-lo, com base na conservação do momento angular tanto na mecânica clássica quanto na mecânica quântica. A diferença é que um sistema clássico tem valores definidos para todos os observáveis o tempo todo, enquanto o sistema quântico não. Em um sentido a ser discutido abaixo, o sistema quântico considerado aqui parece adquirir uma distribuição de probabilidade para o resultado de uma medição do spin ao longo de qualquer eixo da outra partícula após a medição da primeira partícula. Esta distribuição de probabilidade é em geral diferente do que seria sem a medição da primeira partícula. Isso certamente pode ser percebido como surpreendente no caso de partículas emaranhadas separadas espacialmente.
+
+
+\chapter{Aplicações da computação quântica}
+\label{chap.aplicacoes}
+Neste capitulos são apresentadas várias aplicações da computação quântica, sendo o desenvolvimento de novos medicamentos e pesquisa de novos tratamentos uma destas aplicações. Cada aplicação será apresentada num subcapitulo próprio.
+
+\chapter{Diferenças entre computadores quânticos e clássicos}
+\label{chap.diferencas}
+Neste capitulo serão abordadas diferenças entre computadores quânticos e computadores clássicos. De modo a deixar o relatorio mais organizado, posteriormente
+serão criados subcapítulos, onde cada diferença será apresentada num subcapítulo proprio.
+Algo que será abordado será o algoritmo de Shor, um algoritmo quantico que é utilizado para fatorizar um número primo de L bits.
+
+\chapter{Típos de Computadores Quânticos}
+\label{chap.tipos}
+Computador quântico analógico e digital, computador quântico universal e computador quântico adiabático são os três tipos de computadores quânticos abordados neste capítulo.
+
+\chapter*{Contribuições dos autores}
+A escolha de tema, de capítulos e a contrução da introdução foi realizada por ambos os autores.
+\paragraph{} Usar abreviaturas para identificar os autores,
+JP para João Pinto e GB para Gabriel Boia.
+
+\vspace{10pt}
+\textbf{Indicar a percentagem de contribuição de cada autor.}\\
+
+\autores : x\%, x\%\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter*{Acrónimos}
+\begin{acronym}
+\acro{jp}[JP]{João Pinto}
+\acro{gb}[GB]{Gabriel Boia}
+\acro{cq}{CQ}{Computadores Quânticos}
+\acro{ua}[UA]{Universidade de Aveiro}
+\acro{leci}[LECI]{Licenciatura em Engenharia de Computadores e Informática}
+\end{acronym}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\printbibliography
+
+\end{document}
