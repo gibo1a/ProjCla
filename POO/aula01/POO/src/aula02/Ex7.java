@@ -15,7 +15,7 @@ public class Ex7 {
         double x2 = sc.nextDouble();
         System.out.println("y2? ");
         double y2 = sc.nextDouble();
-        System.out.println(Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2),2)));
+        System.out.println("Distancia: " + Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 + y2),2)));
         sc.close();
 
     }

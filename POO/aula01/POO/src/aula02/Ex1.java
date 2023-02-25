@@ -7,7 +7,7 @@ public class Ex1 {
         System.out.println("Enter the number of kilometers ? ");
         double kilometers = sc.nextFloat();
         double miles = (kilometers * 1.609);
-        System.out.println(miles);
+        System.out.println("Miles: " + miles);
         sc.close();
     }
     

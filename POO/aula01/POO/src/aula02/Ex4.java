@@ -16,7 +16,7 @@ public class Ex4 {
             value += value * fees;
             months--;
         }
-        System.out.println(value);
+        System.out.println("Valor: " + value);
         sc.close();
         return value;
     }

@@ -11,7 +11,7 @@ public class Ex3 {
         System.out.println("Insira a temperatura final! ");
         double tempfinal = sc.nextDouble();
         double energia = (agua * (tempfinal - tempinicial) * 4184);
-        System.out.println(energia);
+        System.out.println("Energia: " + energia);
         sc.close();
     }
     

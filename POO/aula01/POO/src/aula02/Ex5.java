@@ -36,7 +36,7 @@ public class Ex5 {
                 speed2 = sc.nextDouble();
             }
         }
-        System.out.println(((speed1 + speed2)/2)/(((distance1 + distance2) / 2)));
+        System.out.println("Medium Velocity: " + ((speed1 + speed2)/2)/(((distance1 + distance2) / 2)));
         sc.close();
 
     }
