@@ -8,6 +8,7 @@ public class Ex1 {
         double kilometers = sc.nextFloat();
         double miles = (kilometers * 1.609);
         System.out.println(miles);
+        sc.close();
     }
     
 }

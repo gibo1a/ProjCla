@@ -1,8 +1,7 @@
 
-import aula02.Ex2;
+import aula02.Ex10;
 public class App {
     public static void main(String[] args) throws Exception {
-        Ex2.toFahrenheit();
-
-    }
+        Ex10.listofNumbers();
+        }
 }

@@ -8,6 +8,7 @@ public class Ex2 {
         double celsius = sc.nextDouble();
         double fahrenheit = (1.8 * celsius) + 32;
         System.out.println(fahrenheit);
+        sc.close();
     }
 
     
