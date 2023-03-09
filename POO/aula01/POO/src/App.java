@@ -1,6 +1,7 @@
-import aula03.Ex3;
+import aula04.Ex2;
+import aula04.Ex2.CashRegisterDemo;
 public class App {
     public static void main(String[] args) throws Exception {
-        Ex3.altoBaixo();
+            CashRegisterDemo.
         }
 }
