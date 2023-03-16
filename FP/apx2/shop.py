@@ -45,7 +45,6 @@ def fatura(produtos, compra):
     Total_Bruto = 0
     Iva = 0
     seccoes = list()
-    oi = 2
     for i in compra:
         Total_Bruto += float(compra[i][0]*produtos[i][2])
         Iva += float(compra[i][0]*produtos[i][2]) * produtos[i][3]
