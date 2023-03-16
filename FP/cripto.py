@@ -1,7 +1,7 @@
 import string
 def Le_fich(name):
     with open(name, 'r') as file:
-        palavras = [i for i in file if i != ' ']
+        palavras = [i for i in file]
     return palavras
 
 def baralha(lst):
