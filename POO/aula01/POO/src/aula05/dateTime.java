@@ -6,7 +6,7 @@ public class dateTime {
         boolean repetir =  true;
         Scanner sc = new Scanner(System.in);
         int number;
-        DateYMD date = new DateYMD(1,1,1);
+        DateYMD date = new DateYMD();
         while(repetir){
             System.out.println("Date operetions:");
             System.out.println("1 - create new date");
@@ -17,25 +17,30 @@ public class dateTime {
             number = sc.nextInt();
             switch (number){
                 case(1):
-                System.out.println("Insert day");
-                int day = sc.nextInt();
-                System.out.println("Insert month");
-                int month = sc.nextInt();
-                System.out.println("Insert year");
-                int year = sc.nextInt();
-                date.setDate(day, month, year);
-                main(args);
+                    System.out.println("Insert day");
+                    int day = sc.nextInt();
+                    System.out.println("Insert month");
+                    int month = sc.nextInt();
+                    System.out.println("Insert year");
+                    int year = sc.nextInt();
+                    date.setDate(day, month, year);
+                    main(args);
+                    break;
                 case(2):
                     date.consultDate();
                     main(args);
+                    break;
                 case(3):
                     date.increment();
                     main(args);
+                    break;
                 case(4):
                     date.decrement();
                     main(args);
+                    break;
                 case(0):
                     repetir = false;
+                    break;
             }
             
         }

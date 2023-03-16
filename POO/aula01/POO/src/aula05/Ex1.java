@@ -4,6 +4,8 @@ class DateYMD{
     private int day;
     private int month;
     private int year;
+    DateYMD(){
+    }
     DateYMD(int day, int month, int year){
         if (valid(day, month, year)){
             this.day = day;
@@ -14,14 +16,22 @@ class DateYMD{
         }
     }
     static boolean validMonth(int month){
-        if (month < 12 && month > 1){
+        if (month <= 12 && month > 1){
             return true;
         }else{
             return false;
         }
 
     }
-    static int monthDays(int month, int year){
+    int month(){
+        return this.month;
+    }
+
+    int day(){
+        return this.day;
+    }
+
+    public static int monthDays(int month, int year){
         switch(month){
             case (1):
             case (3):
@@ -48,7 +58,7 @@ class DateYMD{
         }
 
     }
-    static boolean leapYear(int year){
+    public static boolean leapYear(int year){
         if (year%4 == 0 || year%400 == 0){
             if (year%100 != 0){
                 return true;
@@ -70,7 +80,7 @@ class DateYMD{
             return false;
         } 
     }
-    public void setDate(int day, int month, int year){
+    void setDate(int day, int month, int year){
         if (valid(day, month, year)){
             this.day = day;
             this.month = month;
