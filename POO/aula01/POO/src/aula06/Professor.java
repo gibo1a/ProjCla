@@ -8,9 +8,10 @@ public class Professor extends Pessoa {
 
     Professor(String name, int cc,DateYMD dataNasc,DateYMD dataInsc){
         super(name,cc, dataNasc);
-        this.dataInsc.setDate(dataInsc.getDay(), dataInsc.getMonth(), dataInsc.getYear());
+        this.dataInsc = dataInsc;
     }
-    Professor(String categoria, String departamento){
+    Professor(String categoria, String departamento,String name, int cc,DateYMD dataNasc,DateYMD dataInsc){
+        super(name,cc, dataNasc);
         this.categoria = categoria;
         this.departamento = departamento;
     }

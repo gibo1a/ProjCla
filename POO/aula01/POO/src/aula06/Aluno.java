@@ -10,13 +10,13 @@ public class Aluno extends Pessoa {
 
     Aluno(String iNome, int iBI, DateYMD iDataNasc){
         super(iNome,iBI,iDataNasc);
-        this.dataInsc.setDate(18,03,2023);
+        this.dataInsc = new DateYMD(18,3,2023);
         this.mecnumber = mecnumber + 1;
         mecnumber++;
     }
     Aluno(String iNome, int iBI, DateYMD iDataNasc, DateYMD iDataInsc){
         super(iNome,iBI,iDataNasc);
-        this.dataInsc.setDate(iDataInsc.getDay(), iDataInsc.getMonth(), iDataInsc.getYear());
+        this.dataInsc = iDataInsc;
         this.mecnumber = mecnumber + 1;
         mecnumber++;
     }
