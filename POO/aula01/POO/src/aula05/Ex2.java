@@ -46,11 +46,11 @@ class Calendar {
     }
 
     void addEvent(DateYMD date){ 
-        calendar[date.month()][date.day()] += "*";
+        calendar[date.getMonth()][date.getDay()] += "*";
     }   
 
     void removeEvent(DateYMD date){
-        calendar[date.month()][date.day()].replace("*", "");
+        calendar[date.getMonth()][date.getDay()].replace("*", "");
     }
     void set(int year, int dayOftheWeek){
         if(dayOftheWeek <= 7 && dayOftheWeek >= 1){
