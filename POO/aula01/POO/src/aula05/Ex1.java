@@ -23,12 +23,16 @@ class DateYMD{
         }
 
     }
-    int month(){
-        return this.month;
+    int getMonth(){
+        return month;
     }
 
-    int day(){
-        return this.day;
+    int getDay(){
+        return day;
+    }
+
+    int getYear(){
+        return year;
     }
 
     public static int monthDays(int month, int year){
@@ -85,12 +89,13 @@ class DateYMD{
             this.day = day;
             this.month = month;
             this.year = year;
+            System.out.println(this.day + "\n" + this.month + "\n" + this.year);
         }else{
             System.out.println("Invalid date! Cannot set date! ");
         }
     }
-    public void consultDate(){
-        System.out.println(this.day + ", " + this.month + ", " + this.year);
+    public void consultDate(DateYMD date){
+        System.out.println(date.getMonth());
     }
     @Override
     public String toString() {

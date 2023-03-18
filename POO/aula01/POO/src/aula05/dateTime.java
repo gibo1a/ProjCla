@@ -27,7 +27,7 @@ public class dateTime {
                     main(args);
                     break;
                 case(2):
-                    date.consultDate();
+                    date.consultDate(date);
                     main(args);
                     break;
                 case(3):
