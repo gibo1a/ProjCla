@@ -16,6 +16,7 @@ public class Ex1 {
             System.out.println("Introduza o raio do circulo");
             double radius = sc.nextDouble();
             Circle circulo = new Circle(radius);
+            System.out.println(circulo);
             case 2:
             System.out.println("Introduza o valor dos lados do Triangulo");
             System.out.println("Lado1");
@@ -25,6 +26,7 @@ public class Ex1 {
             System.out.println("Lado3");
             double l3 = sc.nextDouble();
             Triangle triangulo = new Triangle(l1, l2, l3);
+            System.out.println(triangulo);
             case 3:
             System.out.println("Introduza o valor dos lados do Retangulo");
             System.out.println("Comprimento");
@@ -32,6 +34,7 @@ public class Ex1 {
             System.out.println("Largura");
             double lar = sc.nextDouble();
             Rectangle retangulo = new Rectangle(comp, lar);
+            System.out.println(retangulo);
 
 
         }
