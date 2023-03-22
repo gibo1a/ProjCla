@@ -16,6 +16,11 @@ public class Bolseiro extends Aluno {
         this.bolsa = bolsa;
     }
 
+    Bolseiro(String nome, int cc, DateYMD dataNasc,Professor prof, DateYMD dataInsc,double bolsa){
+        super(nome, cc, dataNasc,dataInsc);
+        this.profOrientador = prof;
+        this.bolsa = bolsa;
+    }
     Professor getOrientador(){
         return profOrientador;
     }
