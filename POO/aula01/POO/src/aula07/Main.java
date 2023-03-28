@@ -21,9 +21,19 @@ public class Main {
 
             switch (choice) {
                 case 1:
-		            
+                    System.out.println("Introduza a especie da planta");
+                    String especies = scanner.nextLine();
+                    System.out.println("Introduza o numero identificador da planta");
+                    int ids = scanner.nextInt();
+                    System.out.println("Introduz a altura da planta");
+                    double altura = scanner.nextDouble();
+                    System.out.println("Introduza a idade da planta");
+                    int idade = scanner.nextInt();
+                    pManager.addPlant(new Plant(especies, ids, altura, idade));
                 case 2:
-                    // remover planta
+                    System.out.println("Introduza a planta o id da planta a ser removida");
+                    int idd = scanner.nextInt();
+                    pManager.removePlant(pManager.getPlantbyID(idd));
                 case 3:
                     System.out.println("Introduza a especie da planta");
                     String especie = scanner.nextLine();
@@ -34,7 +44,7 @@ public class Main {
                     if(pManager.sponsorPlant(id)){
                         System.out.println("Introduza o nome do patrocinador");
                         String sponsor = scanner.nextLine();
-                        
+                        pManager.getPlantbyID(id).setSponsor(sponsor);
                     }
                 case 5:
                     pManager.listAllPlants();
@@ -44,9 +54,10 @@ public class Main {
                     System.out.println("Goodbye!");
                     break;
                 default:
-                    // imprimir mensagem de erro
+                    System.out.println("Erro introduziu um número inválido");
             }
 
         } while (choice != 7);
+        scanner.close();
     }
 }

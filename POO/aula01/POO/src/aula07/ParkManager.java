@@ -30,6 +30,7 @@ public class ParkManager implements IParkManager{
                 System.out.println(this.plants.get(i));
             }
         }
+        System.out.println("Não existem plantas dessa especie!");
     }
 
     @Override
@@ -79,6 +80,15 @@ public class ParkManager implements IParkManager{
 
     ArrayList<Plant> getPlants(){
         return plants;
+    }
+
+    Plant getPlantbyID(int id){
+        for(int i = 0;i < this.plants.size();i++){
+            if(this.plants.get(i).getIdentifier() == id){
+                return this.plants.get(i);
+            }
+        }
+
     }
 
 
