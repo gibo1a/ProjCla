@@ -181,10 +181,6 @@ public class DateND extends Date{
         }
     }
 
-    DateND(int daydistance){
-
-    }
-
     int getDayDistance(){
         return daydistance;
     }

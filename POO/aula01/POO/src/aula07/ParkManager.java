@@ -88,7 +88,8 @@ public class ParkManager implements IParkManager{
                 return this.plants.get(i);
             }
         }
-
+        return null;
+        
     }
 
 

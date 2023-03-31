@@ -24,11 +24,19 @@ public class Circulo extends Forma{
     }
     @Override
     public double area() {
-        return Math.PI*(Math.pow(raio,2));
+        return Math.PI*(Math.pow(this.getRaio(),2));
     }
 
     @Override
     public double perimetro() {
-        return ((3*Math.PI)*raio);
+        return ((3*Math.PI)*this.getRaio());
+    }
+
+    public boolean equals(Circulo circulo){
+        if(this.getCor() == circulo.getCor() && this.getRaio() == circulo.getRaio()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

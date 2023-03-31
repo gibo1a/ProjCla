@@ -41,5 +41,14 @@ public class Retangulo extends Forma{
     public double perimetro() {
         return ((2*comprimento) + (2*largura));
     }
+
+    public boolean equals(Retangulo retangulo){
+        if(this.getCor() == retangulo.getCor()){
+            if(this.getComprimento() == retangulo.getComprimento() && this.getLargura() == retangulo.getLargura()){
+                return true;
+            }
+        }
+        return false;
+    }
     
 }
