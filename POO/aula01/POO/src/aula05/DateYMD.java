@@ -7,13 +7,7 @@ public class DateYMD {
     public DateYMD(){
     }
     public DateYMD(int day, int month, int year){
-        if (valid(day, month, year)){
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }else{
-            System.out.println("Invalid date! Cannot create object! ");
-        }
+        this.setDate(day, month, year);
     }
     static boolean validMonth(int month){
         if (month <= 12 && month > 1){
@@ -89,7 +83,6 @@ public class DateYMD {
             this.day = day;
             this.month = month;
             this.year = year;
-            System.out.println(this.day + "\n" + this.month + "\n" + this.year);
         }else{
             System.out.println("Invalid date! Cannot set date! ");
         }
