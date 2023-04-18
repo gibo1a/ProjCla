@@ -1,4 +1,4 @@
-public abstract class Date {
+public abstract class Date implements Comparable<Date>{
     private int day;
     private int month;
     private int year;
