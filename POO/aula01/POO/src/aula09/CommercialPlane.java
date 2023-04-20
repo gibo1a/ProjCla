@@ -16,4 +16,13 @@ public class CommercialPlane extends Plane{
         return passangers;
     }
     
+    @Override
+    public String toString() {
+        return super.toString() + "";
+    }
+    
+    @Override
+    public String getPlaneType() {
+        return "Commercial";
+    }
 }

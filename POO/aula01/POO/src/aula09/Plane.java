@@ -4,6 +4,8 @@ public class Plane {
     private String id, manufacturer, model;
     private int productionyear, maxpassangers, maxspeed;
 
+    public Plane(){}
+
     public Plane(String id, String manufacturer, String model, int productionyear, int maspassangers , int setMaxspeed){
         this.setId(id);
         this.setManufacturer(manufacturer);
@@ -61,7 +63,14 @@ public class Plane {
         return maxspeed;
     }
 
+    public String getPlaneType(){
+        return "Plane";
+    }
 
+    @Override
+    public String toString() {
+        return "Id: " + this.getId() + "Manufacturer: " + this.getManufacturer() + "Model: " + this.getModel() + "ProductionYear: " + this.getProductionyear() + "MaxPassangers: " + this.getMaxpassangers() + "MaxSpeed: " + this.getMaxspeed();
+    }
 
 
     

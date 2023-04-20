@@ -16,4 +16,14 @@ public class MilitaryPlane extends Plane{
     public int getAmmo() {
         return ammo;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Ammo: " + this.getAmmo();
+    }
+
+    @Override
+    public String getPlaneType() {
+        return "Military";
+    }
 }
