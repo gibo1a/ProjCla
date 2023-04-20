@@ -52,10 +52,6 @@ public class Contactos {
         nextid ++;
     }
 
-    void setContact(){
-
-    }
-
     int getID(){
         return id;
     }
@@ -77,7 +73,7 @@ public class Contactos {
     }
 
     void changeID(){
-
+        
     }
 
 }
