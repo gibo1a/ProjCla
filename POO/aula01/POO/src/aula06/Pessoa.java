@@ -5,9 +5,9 @@ public class Pessoa {
     private int cc;
     private DateYMD dataNasc;
 
-    Pessoa(){
+    public Pessoa(){
     }
-    Pessoa(String nome, int cc, DateYMD dataNasc){
+    public Pessoa(String nome, int cc, DateYMD dataNasc){
             this.cc = cc;
             this.nome = nome;
             this.dataNasc = dataNasc;
