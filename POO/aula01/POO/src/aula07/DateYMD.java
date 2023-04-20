@@ -1,4 +1,4 @@
-public class DateYMD extends Date {
+public class DateYMD extends Date implements Comparable<DateYMD> {
     DateYMD(){
     }
 
@@ -8,6 +8,11 @@ public class DateYMD extends Date {
 
     public void consultDate(){
         System.out.println(this.getDay() + "/" + this.getMonth() + "/" + this.getYear());
+    }
+
+    @Override
+    public int compareTo(DateYMD o) {
+        return Integer.compare(this.getYear(), o.getYear());
     }
 
     @Override

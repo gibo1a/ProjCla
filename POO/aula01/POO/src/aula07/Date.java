@@ -1,4 +1,4 @@
-public abstract class Date implements Comparable<Date>{
+public abstract class Date{
     private int day;
     private int month;
     private int year;
@@ -82,5 +82,7 @@ public abstract class Date implements Comparable<Date>{
         }else{
             System.out.println("Invalid date! Cannot set date! ");
         }
+
     }
+
 }
