@@ -34,4 +34,9 @@ public class Book {
     public int getYear(){
         return year;
     }
+
+    @Override
+    public String toString() {
+        return "Title : " + this.getTitle() + "\n" + "Author : " + this.getAuthor() + "\n" + "Year : " + this.getYear();
+    }
 }
