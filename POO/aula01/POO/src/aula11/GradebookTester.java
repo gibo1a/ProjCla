@@ -1,6 +1,4 @@
 package aula11;
-
-import java.util.List;
 import java.util.ArrayList;
 
 public class GradebookTester {
@@ -12,7 +10,7 @@ public class GradebookTester {
         gradebook.load("alunos.txt");
 
         // Add a new student to the collection
-        Student newStudent = new Student("Johny May", new ArrayList<>(List.of(10.0, 15.0, 19.0)));
+        Student newStudent = new Student("Johny May", new ArrayList<>());
         gradebook.addStudent(newStudent);
 
         // Remove a student from the collection
