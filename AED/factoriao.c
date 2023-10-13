@@ -10,37 +10,32 @@ unsigned int factorial(unsigned int n){
     return factorial;
 }
 
-int digits(int n){
-    int i,digit = n;
+int* digits(int n){
+    int i = 0,digit = n;
     size_t size = floor(log10(n)+1);
-    int digits[size];
-    for(i = 0; i< size; i++){
-        digit = n % (int)pow(10,i+1);
-        if(digit > 10){
-            while (digit > 10){
-                digit %= (int)pow(10,i+1)
-            }
-            
-        }
-        digits[i] = n % (int)pow(10,i+1);
+    static int digits[size];
+    while (n != 0){
+        digit = n%10;
+        digits[i] = digit;
+        i++;
+        n = n/10;
     }
-    for(i = 0;i <size; i++){
-        printf("%d\n",digits[i]);
-    }
-    return 0;
+    
+    return digits;
 }
 
-/*unsigned int factoriao(unsigned int n){
+unsigned int factoriao(unsigned int n){
     int i,factoriao;
+    int* digit = digits(n);
     size_t size = floor(log10(n))+1;
-    for(i = size, i <= size;i++){
-        factoriao += ;
+    for(i = size; i <= size;i++){
+        factoriao += factorial(digit[i]);
     }
 
     return factoriao;
-}*/
+}
 
 int main(){
-    digits(1234);
+    factoriao(1234);
     return 0;
 }
