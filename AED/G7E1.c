@@ -39,9 +39,9 @@ int main(void){
     }
 
     if(result == 1){
-        printf("true\n");
+        printf("True\n");
     }else{
-        printf("false\n");
+        printf("False\n");
     }
     
     StackDestroy(&s);
