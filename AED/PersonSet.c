@@ -169,7 +169,7 @@ PersonSet *PersonSetIntersection(const PersonSet *ps1, const PersonSet *ps2) {
   }
   for(int i = 0;i<ps2->size;i++){
     if(PersonSetContains(ps1,ps2->array[i]->id)==1){
-      append(ps,ps2->array[i]);
+      PersonSetAdd(ps,ps2->array[i]);
     }
   }
   return ps;
@@ -180,22 +180,44 @@ PersonSet *PersonSetIntersection(const PersonSet *ps1, const PersonSet *ps2) {
 // NOTE: memory is allocated.  Client must call PersonSetDestroy!
 PersonSet *PersonSetDifference(const PersonSet *ps1, const PersonSet *ps2) {
   // COMPLETE ...
-
-  return NULL;
+  PersonSet *ps = PersonSetCreate();
+  if(ps == NULL){
+    PersonSetDestroy(ps);return NULL;}
+  for(int i = 0;i<ps1->size;i++){
+    if(PersonSetContains(ps2,ps1->array[i]->id)<0){
+      append(ps,ps1->array[i]);
+    }
+  }
+  for(int i = 0;i<ps2->size;i++){
+    if(PersonSetContains(ps1,ps2->array[i]->id)<0){
+      PersonSetAdd(ps,ps2->array[i]);
+    }
+  }
+  return ps;
 }
 
 // Return true iff *ps1 is a subset of *ps2.
 int PersonSetIsSubset(const PersonSet *ps1, const PersonSet *ps2) {
   // COMPLETE ...
-
+  for(int i = 0;i<ps2->size;i++){
+    if(PersonSetContains(ps2,ps1->array[i]->id)<0){
+      return -1;
+    }
+  }
   return 0;
 }
 
 // Return true if the two sets contain exactly the same elements.
 int PersonSetEquals(const PersonSet *ps1, const PersonSet *ps2) {
   // You may call PersonSetIsSubset here!
-
+  if(ps1->size==ps2->size){
+    if(PersonSetIsSubset(ps1,ps2) == 0){
+      return 0;
+    }else{
+      return -1;
+    }
+  }else{
+    return -1;
+  }
   // COMPLETE ...
-
-  return 0;
 }
