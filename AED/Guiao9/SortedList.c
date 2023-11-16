@@ -102,6 +102,7 @@ void ListSetCurrentItem(const List* l, void* p) {
 // newPos == -1 or newPos == l->size means move outside.
 void ListMove(List* l, int newPos) {
   assert(-1 <= newPos && newPos <= l->size);
+  int i;
   if (newPos == l->size) newPos = -1;  // fix newPos
 
   if (newPos == -1) {  // move outside
@@ -114,7 +115,7 @@ void ListMove(List* l, int newPos) {
     // Start at head (or current position) and move forward until newPos.
     // COMPLETE ...
     for(i = l->currentPos; i == newPos;i++){
-      l->current = l->current->next
+      l->current = l->current->next;
     }
   }
   l->currentPos = newPos;
