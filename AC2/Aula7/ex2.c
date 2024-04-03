@@ -47,8 +47,6 @@ int main(void){
         if(cnt == 0){
             AD1CON1bits.ASAM = 1;
         }
-        putChar('\r');
-        printInt(valor, 16 | 4 << 16 );
         send2displays(toBcd(voltage));
         cnt = (cnt + 1)%20;
         resetCoreTimer();
@@ -58,11 +56,11 @@ int main(void){
 }
 
 void _int_(27) isr_adc(void){
-    int *p = (int *)(&ADC1BUF0);
-    for(; p <= (int *)(&ADC1BUF7); p+=1 ) {
-        voltage += *p;
+    int *p = (int *)(&ADC1BUF0),VAL_AD=0;
+    for(; p <= (int *)(&ADC1BUFF); p+=4 ) {
+        VAL_AD += *p;
     }
-    voltage /= 7;
-    //voltage = (((voltage * 33)+511)/1023);
+    VAL_AD =VAL_AD / 8;
+    voltage = (((VAL_AD * 33)+511)/1023);
     IFS1bits.AD1IF = 0;
 }

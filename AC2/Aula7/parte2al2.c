@@ -20,15 +20,16 @@ int main(void){
 
     TRISD = TRISD & 0xF7FF;
 
-    while (1);
+    while (1){
+        LATDbits.LATD11 = 0; 
+    }
     return 0;
 }
 
 void _int_(27) isr_adc(void){
-    volatile int adc_value;
-    LATDbits.LATD11 = 0;        //4.05 microsegundos
-    adc_value = ADC1BUF0;      //4.05 - 3.6 = 0.45 microsegundos
-    AD1CON1bits.ASAM = 1;
-    LATDbits.LATD11 = 1;
+    volatile int adc_value;  
+    adc_value = ADC1BUF0;  
+    AD1CON1bits.ASAM = 1;     //750 nanosegundos
+    LATDbits.LATD11 = 1;     //30 ciclos de relógio
     IFS1bits.AD1IF = 0;
 }
