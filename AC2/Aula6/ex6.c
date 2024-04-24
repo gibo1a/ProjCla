@@ -40,7 +40,7 @@ int main(void){
 
     unsigned int counter = 0;
     volatile int aux;
-    int media;
+    int media = 0;
     while(1){
         AD1CON1bits.ASAM = 1;
         LATDbits.LATD11 = 1;
@@ -59,8 +59,8 @@ int main(void){
         int tensao = (((media * 33)+511)/1023);
         tensao = toBcd(tensao);
         send2displays(tensao);
-        resetCoreTimer()
-        while(readCoreTimer() < 200000000);
+        resetCoreTimer();
+        while(readCoreTimer() < 2000000);
     }
 
     return 0;
