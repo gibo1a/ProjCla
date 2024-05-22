@@ -33,7 +33,7 @@ void _int_(32) isr_uart2(void){
         }else{
             IEC1bits.U2TXIE = 0;// Disable UART2 Tx interrupts  
         }
-        IFS1bits.U2TXIF == 0;  // Clear UART2 Tx interrupt flag
+        IFS1bits.U2TXIF = 0;  // Clear UART2 Tx interrupt flag
     }
 }
 
@@ -55,7 +55,8 @@ int main(void){
                                 // Initialize buffer variable "nchar" with 0
     EnableInterrupts();
     txbuf.nchar = 0;
-    //while(1){
-    putstrInt("Test string which can be as long as you like, up to a maximum of 100 characters\n");
+    while(1){
+        putstrInt("Test string which can be as long as you like, up to a maximum of 100 characters\n");
+    }
     return 0;
 }
