@@ -17,7 +17,7 @@ int main(void){
     IEC1bits.U2RXIE = 1;
     IPC8bits.U2IP = 2;
 
-    TRISE = TRISE & 0xFFE1;
+    TRISE = TRISE & 0xFFF0;
 
     while(1);
     return 0;
@@ -27,12 +27,12 @@ void _int_(32) u2_isr(void){
     char c = U2RXREG;
     if(c == 'U'){
         cnt = (cnt+1)%16;
-        LATE = LATE & 0xFFE1;
-        LATE = (LATE | cnt)<<1;
+        LATE = LATE & 0xFFF0;
+        LATE = (LATE | cnt);
     }else if(c == 'R'){
         cnt = 0;
-        LATE = LATE & 0xFFE1;
-        LATE = (LATE | cnt)<<1;
+        LATE = LATE & 0xFFF0;
+        LATE = (LATE | cnt);
         char string[] = "RESET";
         while(U2STAbits.UTXBF == 1);
         char *str = string;
