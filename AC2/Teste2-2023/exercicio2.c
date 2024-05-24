@@ -46,6 +46,9 @@ int main(void){
     IEC0bits.T3IE = 1; // Enable timer T2 interrupts
     IFS0bits.T3IF = 0; // Reset timer T2 interrupt flag
 
+    TRISD &= 0xFF9F;
+    TRISB &= 0x80FF;
+
     EnableInterrupts();
     while (1){
         AD1CON1bits.ASAM = 1;
