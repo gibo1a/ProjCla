@@ -1,6 +1,6 @@
 #include <detpic32.h>
 
-volatile int temp = 0;
+volatile int temperature = 0;
 
 void send2displays(unsigned char value){
     static const char disp7Scodes[] = {0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x39,0x5E,0x79,0x71};
@@ -41,7 +41,9 @@ int main(void){
     T3CONbits.TCKPS = 2; // 1:32 prescaler (i.e. fout_presc = 625 KHz)
     PR3 = 35713; // Fout = 20MHz / (32 * (62499 + 1)) = 10 Hz
     TMR3 = 0; // Clear timer T2 count register
-    T3CONbits.TON = 1;
+    T3CONbits.TON = 1; // Enable timer T2 (must be the last command of the
+    // timer configuration sequence)
+
     IPC3bits.T3IP = 2; // Interrupt priority (must be in range [1..6])
     IEC0bits.T3IE = 1; // Enable timer T2 interrupts
     IFS0bits.T3IF = 0; // Reset timer T2 interrupt flag
@@ -50,25 +52,26 @@ int main(void){
     TRISB &= 0x80FF;
 
     EnableInterrupts();
-    while (1){
+
+    while(1){
+        temperature = 0;
         AD1CON1bits.ASAM = 1;
         while(IFS1bits.AD1IF == 0);
         int *p = (int*)(&ADC1BUF0);
-        for(;p <= (int*)(&ADC1BUFF);p+=4){
-            temp += *p;
+        for(;p<=(int*)(&ADC1BUFF);p+=4){
+            temperature += *p;
         }
-        temp = temp / 2;
-        temp = temp / 16;
-        temp += 10;
+        temperature = temperature/2;
+        temperature = temperature / 16;
+        temperature += 15;
         resetCoreTimer();
         while(readCoreTimer()<4000000);
         IFS1bits.AD1IF = 0;
     }
-    
     return 0;
 }
 
 void _int_(12) t3_isr(void){
-    send2displays(temp);
+    send2displays(temperature);
     IFS0bits.T3IF = 0;
 }

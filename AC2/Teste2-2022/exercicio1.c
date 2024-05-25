@@ -14,6 +14,8 @@ int main(void){
     TRISBbits.TRISB3 = 1;
     TRISBbits.TRISB0 = 1;
 
+    TRISCbits.TRISC14 = 0;
+
     while(1){
         if((PORTBbits.RB0==1) & (PORTBbits.RB3==0)){
             OC2RS = 8333;
@@ -22,6 +24,7 @@ int main(void){
         }else{
             OC2RS = OC2RS;
         }
+        LATCbits.LATC14 = PORTDbits.RD1;
         resetCoreTimer();
         while(readCoreTimer() < 5000);
     }

@@ -19,6 +19,10 @@ void send2displays(unsigned char value){
     displayFlag = !displayFlag;
 }
 
+unsigned char toBcd(unsigned char value){
+    return ((value / 10) << 4) + (value % 10);
+}
+
 int main(void){
     TRISBbits.TRISB4 = 1; // RBx digital output disconnected
     AD1PCFGbits.PCFG4= 0; // RBx configured as analog input
@@ -50,16 +54,19 @@ int main(void){
 
     TRISD &= 0xFF9F;
     TRISB &= 0x80FF;
+
+    EnableInterrupts();
     
     while(1){
         AD1CON1bits.ASAM = 1; 
         while( IFS1bits.AD1IF == 0 );
-        int *p = (int*)ADC1BUF0;
-        for(;p != (int*)ADC1BUFF;p+=4){
+        temp = 0;
+        int *p = (int*)(&ADC1BUF0);
+        for(;p <= (int*)(&ADC1BUFF);p+=4){
             temp += *p;
         }
         temp = temp / 2;
-        temp = temp / 20;
+        temp = temp / 21;
         temp += 15;
         resetCoreTimer();
         while(readCoreTimer()<2000000);
@@ -69,6 +76,6 @@ int main(void){
 }
 
 void _int_(8) t2_isr(void){
-    send2displays(temp);
+    send2displays(toBcd(temp));
     IFS0bits.T2IF = 0; 
 }
