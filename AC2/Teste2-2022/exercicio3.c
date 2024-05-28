@@ -28,6 +28,7 @@ int main(void){
 }
 
 void _int_(32) u2_isr(void){
+    if(U2STAbits.OERR == 1){U2STAbits.OERR == 0;}
     char c = U2RXREG;
     if(c == 'U'){
         cnt = (cnt+1)%16;
