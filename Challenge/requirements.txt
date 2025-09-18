@@ -1,0 +1,4 @@
+medmnist
+streamlit
+pandas
+torch
