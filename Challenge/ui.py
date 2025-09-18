@@ -10,7 +10,7 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("L")
     st.image(image, caption="Uploaded Image",width="stretch")
 
-    model = load_model("C:/Users/gabib/Desktop/Challenge/model/resnet50_breastmnist.pth")
+    model = load_model("model/resnet50_breastmnist.pth")
 
     input_tensor = prepare_image(image)
 
